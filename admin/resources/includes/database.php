@@ -35,11 +35,12 @@ function cerrar_conexion($conexion)
 function query($consulta)
 {
     $conexion = conexion();
-     $resultado=mysqli_query($conexion,$consulta) or die(mysqli_error());
+    $resultado=mysqli_query($conexion,$consulta);
     if($consulta[0]=='i' or $consulta[0]=='I') // for insert
     { $resultado = mysqli_insert_id();}
     cerrar_conexion($conexion);
     return $resultado;
+}
 
 function fetch_array($resultado){
     
