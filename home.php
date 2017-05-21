@@ -8,10 +8,7 @@
 			                    $rows = num_rows($result);
 														echo '<ol class="carousel-indicators hidden-xs">';
 								                    for ($i=0; $i<$rows; $i++) {
-									                    if ($i == 0) {
-									                    	echo '<li data-target="#carousel-example-generic" data-slide-to="0"></li>';} 
-									                    else {
-									                    	echo '<li data-target="#carousel-example-generic" data-slide-to="'.$i.'"></li>';}
+									                    	echo '<li data-target="#carousel-example-generic" data-slide-to="'.$i.'"></li>';
 									                   }
 														echo '</ol>';
 			                  ;?>
@@ -19,9 +16,9 @@
                         <div class="carousel-inner">
 		                        <?
 		                        $ruta = "admin/img_slider/";
-		                        while($row = fetch_array($result))
-		                        { echo'<div class="">
-		                        <img class="img-responsive img-full" src="admin/img_slider/'.$row['imagen'].'" alt="">
+		                        for($i=0; $row = fetch_array($result); $i++)
+		                        { echo'<div class="item'.(($i==0)? ' active' : '').'">
+		                        <img class="img-responsive img-full" src="admin/img_slider/'.$row['imagen'].'" alt=""/>
 		                        </div>';}
 		                        ?>
                         </div>
