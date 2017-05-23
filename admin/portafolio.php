@@ -35,7 +35,7 @@
     		            $imagen = $_POST['imagen'];
                         $contenido = $_POST['contenido'];
                         $id_categoria=$_POST['id_categoria'];
-                    
+
                     $ruta = "imagenes_portafolio/";
 
 										opendir($ruta);
@@ -72,11 +72,12 @@
                     $titulo=$_POST['titulo']; 
                     $contenido=$_POST['contenido'];
                     $id_categoria=$_POST['id_categoria'];
+                    $nombre=$_SESSION['nombres'];
                     $nom=$_FILES['foto']['name'];
                     $fecha=date('Y-m-d');
 
 
-                    $sql_query="INSERT INTO portafolio (titulo,contenido,fecha,imagen,id_categoria) VALUES('".$titulo."','".$contenido."','".$fecha."','".$nom."','".$id_categoria."')";
+                    $sql_query="INSERT INTO portafolio (titulo,contenido,fecha,imagen,id_categoria, autor) VALUES('".$titulo."','".$contenido."','".$fecha."','".$nom."','".$id_categoria."', '".$nombre."')";
  
                     query($sql_query);
                 }
