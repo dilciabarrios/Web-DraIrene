@@ -25,10 +25,10 @@ include("admin/resources/includes/database.php");
                     <hr>
                     <br>
                         <?
-                        $result=query("SELECT * FROM portafolio");
+                        $result=query("SELECT * FROM portafolio ORDER BY id DESC LIMIT 6");
                         while($row = fetch_array($result)) {
 
-                       echo' <a href="blogs.php?id='.$row['id'].'" class="list-group-item">
+                       echo' <a href="#" class="list-group-item">
                             <p class="list-group-text">'.$row['fecha'].'</p>
                             <p>'.$row['titulo'].'</p>
                         </a>';
@@ -55,7 +55,8 @@ include("admin/resources/includes/database.php");
                     </a> 
             </aside>
             <?
-                $result=query("SELECT portafolio.id as id_portafolio, portafolio.titulo AS titulo_portafolio, portafolio.contenido AS contenido_portafolio, portafolio.imagen AS imagen_portafolio, portafolio.autor AS autor_portafolio, portafolio.id AS id_portafolio, categorias.nombre AS nombre_categoria FROM portafolio INNER JOIN categorias ON categorias.id_categoria = portafolio.id_categoria ORDER BY id DESC LIMIT 3");
+
+                $result=query("SELECT portafolio.titulo as titulo_portafolio, portafolio.contenido as contenido_portafolio, portafolio.imagen as imagen_portafolio, portafolio.autor as autor_portafolio, categorias.nombre as nombre_categoria from portafolio inner join categorias on categorias.id_categoria= portafolio.id_categoria where id=".$_GET['id']);
                 $contador= 1;
                 while($row = fetch_array($result)) 
                 { echo '
@@ -65,32 +66,26 @@ include("admin/resources/includes/database.php");
                         <a href="admin/imagenes_portafolio'.$row['imagen_portafolio'].'" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="admin/imagenes_portafolio/">
                             <img src="admin/imagenes_portafolio/'.$row['imagen_portafolio'].'" class="img-responsive" alt="img"></a>;
 
-                        <h2>'.$row['titulo'].'
+                        <h2>'.$row['titulo_portafolio'].'
                             <br>
                             <small> autor: '.$row['autor_portafolio'].'</small>
                             <small> categoria: '.$row['nombre_categoria'].'</small>
                         </h2>
                         <p>'.$row['contenido_portafolio'].'</p>
-
-                        <a href="blogs.php?id='.$row['id_portafolio'].'" class="btn btn-default btn-lg">Read More</a>
                         <hr>
                     </div> 
-                </section>';}?> 
+                </section>';} ?> 
        </div>
             <nav>
                 <div class="center-block" align="center">
                     <ul class="pagination">
                         <li class="disabled"><a href="#">&laquo;<span class="sr-only">Anterior</span></a></li>
-                        <?
-                        $result= query("SELECT * FROM portafolio");
-                        for($i=0; $row = fetch_array($result); $i++){
-                        	if($i=0){
-                        		echo '<li class="active"><a href="portafolio.php">'.$i.'</a></li>';
-                        	}
-                            else{
-                        		echo '<li><a href="blogs.php?id='.$row['id'].'">'.$i.'</a></li>';
-                            }
-                        }?>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
                         <li class="disabled"><a href="#">&raquo;<span class="sr-only">Siguiente</span></a></li>
                     </ul>
                 </div>
