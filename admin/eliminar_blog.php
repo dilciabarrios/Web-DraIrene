@@ -6,13 +6,13 @@
 </head>
 <?php
 
-	$sql = "Delete FROM portafolio WHERE id='".$_GET['id']."'";
+	$sql = "Delete FROM blog WHERE id='".$_GET['id']."'";
 	//echo "</br>".$sql."</br>";
 	$result =query($sql);
 	if (! $result){die ("ERROR AL ELIMINAR:". mysql_error());}
 ?>
 <script type="text/javascript">
-window.location="http:index.php?menu=portafolio";
+window.location="http:index.php?menu=blog";
 </script>
 <body>
 </body>

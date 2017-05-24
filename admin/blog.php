@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <ol class="breadcrumb">
-                    <li><i class="fa fa-picture-o"></i><a href="index.php?menu=portafolio">Portafolio</a></li>
+                    <li><i class="fa fa-picture-o"></i><a href="index.php?menu=blog">Blog</a></li>
                     <li><i class=""></i>Panel de Control</li>                           
                 </ol>
             </div>
@@ -15,7 +15,7 @@
                 <!--si el id modulo seleccionado y el perfil de usuario correspondan segun el permiso establecido;
                 ver funcion en database.php para permisologias de leer, crear, editar y eliminar-->
                   <? if(puede_crear($_GET['id_modulo'], $_SESSION['id_perfil'])){ ?>
-                    <button class="btn btn-success" id="boton1" value="ejecutar" type="button" onclick="location.href='index.php?menu=registrar_portafolio'">Anadir Nuevo</button>
+                    <button class="btn btn-success" id="boton" type="button" onclick="location.href='index.php?menu=registrar_blog'">Anadir Nuevo</button>
                     <? } ?>
                      <button class="btn btn-default" type="button" onclick="location.href='index.php'">Regresar</button>
                 </div>
@@ -33,8 +33,8 @@
     		            $titulo = $_POST['titulo'];
     		            $contenido = $_POST['contenido'];
     		            $imagen = $_POST['imagen'];
-                        $contenido = $_POST['contenido'];
-                        $id_categoria=$_POST['id_categoria'];
+                    $contenido = $_POST['contenido'];
+                    $id_categoria=$_POST['id_categoria'];
 
                     $ruta = "imagenes_portafolio/";
 
@@ -44,12 +44,12 @@
 
                              // comprueba de que se haya adjuntado una imagen nueva
     				        if (move_uploaded_file($_FILES['foto']['tmp_name'], $destino)){ 
-    				        		 $nom= $_FILES['foto']['name'];
-    									// de adjuntarse una imagen nueva se realizara update para el campo imagen y demas campos
-    							 		$sql_query = "UPDATE portafolio SET  titulo='$titulo', contenido='$contenido', imagen='$nom', id_categoria='$id_categoria' WHERE id='".$_POST['id']."'"; 
+			        		 $nom= $_FILES['foto']['name'];
+										// de adjuntarse una imagen nueva se realizara update para el campo imagen y demas campos
+								 		$sql_query = "UPDATE blog SET  titulo='$titulo', contenido='$contenido', imagen='$nom', id_categoria='$id_categoria' WHERE id='".$_POST['id']."'"; 
     				        }   		
     				        else{ // en el caso de que no se haya adjuntado ninguna imagen nueva no actualizamos el campo imagen
-    							 		$sql_query = "UPDATE portafolio SET  titulo='$titulo', contenido='$contenido', id_categoria='$id_categoria' WHERE id='".$_POST['id']."'"; 
+    							 		$sql_query = "UPDATE blog SET  titulo='$titulo', contenido='$contenido', id_categoria='$id_categoria' WHERE id='".$_POST['id']."'"; 
     				        }
                             //ejecuta consulta
     						query($sql_query);
@@ -62,7 +62,7 @@
                 {
 
                     //nombre de mi carpeta donde guardara las imagenes 
-                    $ruta = "imagenes_portafolio/";
+                    $ruta = "imagenes_blog/";
                     opendir($ruta);
                     $destino = $ruta.$_FILES['foto']['name'];
                     copy($_FILES['foto']['tmp_name'],$destino);
@@ -77,12 +77,12 @@
                     $fecha=date('Y-m-d');
 
 
-                    $sql_query="INSERT INTO portafolio (titulo,contenido,fecha,imagen,id_categoria, autor) VALUES('".$titulo."','".$contenido."','".$fecha."','".$nom."','".$id_categoria."', '".$nombre."')";
+                    $sql_query="INSERT INTO blog (titulo,contenido,fecha,imagen,id_categoria, autor) VALUES('".$titulo."','".$contenido."','".$fecha."','".$nom."','".$id_categoria."', '".$nombre."')";
  
                     query($sql_query);
                 }
     	       // select con inner join categorias para devolver el nombre de la categoria
-                $sql = "SELECT portafolio.titulo as titulo_portafolio, portafolio.contenido as contenido_portafolio,portafolio.imagen as imagen_portafolio, categorias.nombre as nombre_categoria, portafolio.id FROM portafolio inner join categorias on portafolio.id_categoria = categorias.id_categoria";
+                $sql = "SELECT blog.titulo as titulo_blog, blog.contenido as contenido_blog, blog.imagen as imagen_blog, categorias.nombre as nombre_categoria, blog.id FROM blog inner join categorias on blog.id_categoria = categorias.id_categoria";
                 $result =query ($sql);
                 if (! $result){
                 echo "La consulta SQL contiene errores.".mysql_error();
@@ -109,20 +109,20 @@
                 // recorrido de la consulta para mostrar valores de los campos 
                 echo '</tr>
                 <td>'.$number.'</td>
-                <td>'.$row['titulo_portafolio'].'</td>
-                <td>'.$row['contenido_portafolio'].'</td>
+                <td>'.$row['titulo_blog'].'</td>
+                <td>'.$row['contenido_blog'].'</td>
                 <td>'.$row['nombre_categoria'].'</td>
-                <td>'.$row['imagen_portafolio'].'</td>';?>
+                <td>'.$row['imagen_blog'].'</td>';?>
 
                 <!--si el id modulo seleccionado y el perfil de usuario correspondan segun el permiso establecido;
                 ver funcion en database.php para permisologias de leer, crear, editar y eliminar-->
 
                 <? if(puede_editar($_GET['id_modulo'], $_SESSION['id_perfil'])){ ?>
-                <? echo '<td><center><a href="index.php?menu=editar_portafolio&id='.$row['id'].'">Editar</a></center></td>';?>
+                <? echo '<td><center><a href="index.php?menu=editar_blog&id='.$row['id'].'">Editar</a></center></td>';?>
                 <? } ?>
 
                 <? if(puede_eliminar($_GET['id_modulo'], $_SESSION['id_perfil'])){ ?>
-                <? echo '<td><center><a href="index.php?menu=eliminar_portafolio&id='.$row['id'].'">Eliminar</a></center></td>';?>
+                <? echo '<td><center><a href="index.php?menu=eliminar_blog&id='.$row['id'].'">Eliminar</a></center></td>';?>
                 <? } ?>
                 
 

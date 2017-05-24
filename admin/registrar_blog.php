@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <ol class="breadcrumb">
-                    <li><i class="fa fa-picture-o"></i><a href="index.php?menu=portafolio">Portafolio</a></li>
+                    <li><i class="fa fa-picture-o"></i><a href="index.php?menu=blog">Blog</a></li>
                     <li><i class=""></i>Panel de Control</li>                           
                 </ol>
             </div>
@@ -19,8 +19,9 @@
         <div class="row">
             <div class="col-md-12">
                 <br>
-
-                <form method="post" action="index.php?menu=portafolio" enctype="multipart/form-data">
+                
+                
+                <form method="post" action="index.php?menu=blog" enctype="multipart/form-data">
             
                     <div class="form-group">
                         <label for="titulo">Titulo</label>

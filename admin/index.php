@@ -44,17 +44,29 @@
         case "eliminar_home":
             include("eliminar_home.php");
             break;
-        case "portafolio":
-            include("portafolio.php");
+        case "about":
+            include("about.php");
             break;
-        case "registrar_portafolio":
-            include("registrar_portafolio.php");
+        case "registrar_about":
+            include("registrar_about.php");
             break;
-        case "editar_portafolio":
-            include("editar_portafolio.php");
+        case "editar_about":
+            include("editar_about.php");
             break;
-        case "eliminar_portafolio":
-            include("eliminar_portafolio.php");
+        case "eliminar_about":
+            include("eliminar_about.php");
+            break;
+        case "blog":
+            include("blog.php");
+            break;
+        case "registrar_blog":
+            include("registrar_blog.php");
+            break;
+        case "editar_blog":
+            include("editar_blog.php");
+            break;
+        case "eliminar_blog":
+            include("eliminar_blog.php");
             break;
         case "usuarios":
             include("usuarios.php");
