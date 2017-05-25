@@ -43,9 +43,10 @@ include("admin/resources/includes/database.php");
                         for ($i=1; $row=fetch_array($result); $i++) { 
 
 	                       echo' <a href="blog.php?pagina='.$i.'" class="list-group-item">
-	                            <p class="list-group-text">'.$row['fecha'].'</p>
-	                            <p>'.$row['titulo'].'</p>
-	                        </a>';
+				                            <p class="list-group-text">'.$row['fecha'].'</p>
+				                            <p>'.$row['titulo'].'</p>
+				                            </a>
+				                        ';
 	                         } 
 	                        echo' 
 	                        <br>
@@ -108,7 +109,7 @@ include("admin/resources/includes/database.php");
 	                        $next = $pagina +1;
 
 	                        if ($prev >0){
-	                        	echo "<li><a href='blog.php?pagina=".$prev."' title='Anterior'>".'<<'."</a></li>";
+	                        	echo "<li><a href='blog.php?pagina=".$prev."' title='Anterior'>".'Anterior'."</a></li>";
 
 	                          echo '<li class="enable"><a href="blog.php?pagina='.$prev.'">&laquo;<span class="sr-only">Anterior</span></a></li>';
 	                        }
@@ -119,7 +120,7 @@ include("admin/resources/includes/database.php");
 
 	                        if ($pagina < $total_filas){
                              echo '<li class="enable"><a href="blog.php?pagina='.$next.'">&raquo;<span class="sr-only">Siguiente</span></a></li>';
-                             echo "<li><a href='blog.php?pagina=$total_pagina' title='Ir a la ultima pagina'>".'>>'."</a></li>";
+                             echo "<li><a href='blog.php?pagina=$total_pagina' title='Ir a la ultima pagina'>".'Ultima'."</a></li>";
 	                        }
 	                    ?>
                     
