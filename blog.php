@@ -38,22 +38,29 @@ include("admin/resources/includes/database.php");
 					              $ubicacion = ($pagina -1)* $num_rows; //calculamos el desplazamiento para nuestra consulta
 					              //ubicacion de nuestro nro de pagina primer caso ubicacion= 2-1*1 = 1 pagina / 1(elemento a mostrar)
 					              //la pagina 1 va hacer nuestro inicio
+                  
+                   $consulta= query("SELECT DISTINCT EXTRACT(YEAR FROM fecha) AS fecha FROM blog");
+              	  for ($i=2015; $row=fetch_array($consulta); $i++) {
 
-                        $result=query("SELECT * FROM blog ORDER BY id DESC LIMIT 6");
-                        for ($i=1; $row=fetch_array($result); $i++) { 
+              	        $year = $row['fecha'];
 
-	                       echo' <a href="blog.php?pagina='.$i.'" class="list-group-item">
-				                            <p class="list-group-text">'.$row['fecha'].'</p>
-				                            <p>'.$row['titulo'].'</p>
-				                            </a>
-				                        ';
-	                         } 
-	                        echo' 
-	                        <br>
-	                        <a href="" class="btn btn-default btn-lg">Read More</a>';
+						         echo '<div class="navcontainer list-group-item">
+											    <ul>
+									
+		                        <li class="first">>> <strong>'.$row['fecha'].'</strong>
+													  				<ul> ';
 
-                   ?>   
+			       							$result=query("SELECT EXTRACT( YEAR FROM fecha ) AS fecha_ano, titulo, fecha FROM blog where YEAR(fecha)= $year ORDER BY id DESC");
 
+			                      for ($i=0; $row=fetch_array($result); $i++) { 
+														    echo'<li><a href="blog.php?pagina='.$i.'">'.$row['fecha'].'<br>
+																	   '.$row['titulo'].'</a></li>';}
+									 						echo '</ul>
+											      </li>
+											    </ul>
+											</div> ';
+						
+                }?>
 
                     <hr>
                         <h2 class="intro-text text-center">Redes
@@ -69,6 +76,8 @@ include("admin/resources/includes/database.php");
                     <a href="#" class="list-group-item">
                         <p class="list-group-text">Instagram</p>
                     </a> 
+                
+
             </aside>
             <?
 
