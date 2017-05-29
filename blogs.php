@@ -82,8 +82,7 @@ include("admin/resources/includes/database.php");
             </aside>
             <section class="posts col-md-9">
             <?
-
-              $result=query("SELECT blog.id as id_blog, blog.titulo AS titulo_blog, blog.contenido AS contenido_blog, blog.imagen AS imagen_blog, blog.autor AS autor_blog, categorias.nombre AS nombre_categoria FROM blog INNER JOIN categorias ON categorias.id_categoria = blog.id_categoria ORDER BY id DESC LIMIT 1");
+              $result=query("SELECT blog.id as id_blog, blog.titulo AS titulo_blog, blog.contenido AS contenido_blog, blog.imagen AS imagen_blog, blog.autor AS autor_blog, categorias.nombre AS nombre_categoria FROM blog INNER JOIN categorias ON categorias.id_categoria = blog.id_categoria where id=".$_GET['id']);
 
               $row = fetch_array($result);
               echo '<div class="col-lg-12 text-center">
@@ -103,9 +102,22 @@ include("admin/resources/includes/database.php");
               $id_blog = $row['id_blog'];
             ?>
 
-           <nav>
+             <nav>
                 <div class="center-block" align="center">
                     <ul class="pagination"> 
+                    if ()
+
+                    <?
+                    $consulta=query("SELECT min(id) as id_anterior FROM blog WHERE id>".$_GET['id']);
+
+                    $row=fetch_array($consulta);
+
+                    echo '<li class="enable">
+                             <a href="blogs.php?id='.$row['id_anterior'].'">Anterior<span class="sr-only">Anterior</span></a>
+                          </li>';
+
+                    ?>
+    
     
                     <?
 
@@ -113,12 +125,12 @@ include("admin/resources/includes/database.php");
 
                     $row=fetch_array($consulta);
 
-	                  echo '<li class="enable">
-	                           <a href="blogs.php?id='.$row['id_proximo'].'">Siguiente<span class="sr-only">Siguiente</span></a>
-	                        </li>';
+                    echo '<li class="enable">
+                             <a href="blogs.php?id='.$row['id_proximo'].'">Siguiente<span class="sr-only">Siguiente</span></a>
+                          </li>';
                     ?>
 
-	                   
+ 
                   </ul>
             </nav>
         </section>'
